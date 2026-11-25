@@ -1,0 +1,1921 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rendi Damara — Weak Engineer · Backend & Hardware</title>
+    <meta
+      name="description"
+      content="Portofolio Rendi Damara (Reddra) — Backend Developer & Hardware Engineer. Software × Hardware × Research. V1 No-Video Edition."
+    />
+    <meta name="robots" content="index, follow" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                dark: "#0B0D11",
+                "dark-2": "#0F1217",
+                "dark-3": "#14181F",
+                accent: "#7DD3FC",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              mono: [
+                '"Geist Mono"',
+                "ui-monospace",
+                "SFMono-Regular",
+                "monospace",
+              ],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: #0b0d11;
+        color: #e5e7eb;
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection {
+        background: #7dd3fc;
+        color: #0b0d11;
+      }
+
+      .text-stroke {
+        -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.28);
+        color: transparent;
+      }
+      .text-stroke-accent {
+        -webkit-text-stroke: 1.5px rgba(125, 211, 252, 0.55);
+        color: transparent;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      @keyframes pulse-green {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+        }
+      }
+      .pulse-dot {
+        animation: pulse-green 2s infinite;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+          transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0b0d11;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e293b;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #7dd3fc;
+      }
+
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        height: 1px;
+        width: 0;
+        background: #7dd3fc;
+        transition: width 0.35s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .testimonial {
+        opacity: 0;
+        position: absolute;
+        inset: 0;
+        transition: opacity 0.6s ease;
+        pointer-events: none;
+      }
+      .testimonial.active {
+        opacity: 1;
+        position: relative;
+        pointer-events: auto;
+      }
+
+      #progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: #7dd3fc;
+        width: 0%;
+        z-index: 100;
+        transition: width 0.1s linear;
+      }
+      .grid-bg > div {
+        border-right: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .grid-bg > div:last-child {
+        border-right: none;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: rgba(20, 24, 31, 0.9);
+        border: 1px solid rgba(125, 211, 252, 0.5);
+        color: #fff;
+        font-family: "Geist Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        padding: 0.85rem 1.5rem;
+        border-radius: 9999px;
+        z-index: 200;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        backdrop-filter: blur(10px);
+        pointer-events: none;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      input,
+      textarea {
+        font-family: "Geist Mono", monospace;
+      }
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #7dd3fc;
+      }
+
+      #heroParticles {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.25;
+      }
+    </style>
+  </head>
+
+  <body class="relative">
+    <div id="progress-bar"></div>
+
+    <div
+      class="grid-bg fixed inset-0 z-0 hidden md:grid grid-cols-12 pointer-events-none"
+      aria-hidden="true"
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <header
+      class="fixed top-0 inset-x-0 h-20 z-50 bg-brand-dark/90 backdrop-blur-md border-b border-slate-800/80"
+    >
+      <div
+        class="h-full px-6 md:px-12 max-w-[1700px] mx-auto flex items-center justify-between"
+      >
+        <a href="#hero" class="flex items-center gap-3 group">
+          <span
+            class="relative w-9 h-9 rounded-full border border-brand-accent/50 flex items-center justify-center group-hover:border-brand-accent transition"
+          >
+            <span class="w-2 h-2 bg-brand-accent rounded-full"></span>
+          </span>
+          <span class="font-mono text-xs tracking-[0.25em] text-white"
+            >REDDRA<span class="text-brand-accent">.</span></span
+          >
+        </a>
+
+        <nav
+          class="hidden md:flex items-center gap-8 font-mono text-[11px] tracking-[0.2em] text-slate-400"
+        >
+          <a href="#hero" class="nav-link hover:text-white transition"
+            >01 / HOME</a
+          >
+          <a href="#work" class="nav-link hover:text-white transition"
+            >02 / WORK</a
+          >
+          <a href="#blog" class="nav-link hover:text-white transition"
+            >03 / LAB NOTES</a
+          >
+          <a href="#contact" class="nav-link hover:text-white transition"
+            >04 / CONTACT</a
+          >
+        </nav>
+
+        <div class="flex items-center gap-2 md:gap-3">
+          <button
+            id="downloadCv"
+            class="hidden md:inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] px-4 py-2 border border-slate-700 hover:border-brand-accent hover:text-brand-accent transition rounded-full"
+          >
+            <iconify-icon icon="lucide:download" class="text-sm"></iconify-icon>
+            DOWNLOAD CV
+          </button>
+          <button
+            id="panelBtn"
+            type="button"
+            aria-label="Open lab panel"
+            class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-brand-accent hover:text-brand-accent transition"
+          >
+            <iconify-icon icon="lucide:flask-conical"></iconify-icon>
+          </button>
+          <button
+            id="menuBtn"
+            type="button"
+            aria-label="Open menu"
+            class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-brand-accent hover:text-brand-accent transition"
+          >
+            <iconify-icon icon="lucide:menu"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div
+      id="sidebarOverlay"
+      class="fixed inset-0 bg-black/70 z-[60] hidden opacity-0 transition-opacity duration-300"
+    ></div>
+    <div
+      id="panelOverlay"
+      class="fixed inset-0 bg-black/70 z-[60] hidden opacity-0 transition-opacity duration-300"
+    ></div>
+
+    <aside
+      id="sidebar"
+      class="fixed inset-y-0 left-0 w-full md:w-[420px] bg-brand-dark-2 border-r border-slate-800 z-[70] -translate-x-full transition-transform duration-500 ease-[cubic-bezier(.2,.8,.2,1)] flex flex-col"
+    >
+      <div
+        class="h-20 px-6 md:px-8 flex items-center justify-between border-b border-slate-800"
+      >
+        <span class="font-mono text-[11px] tracking-[0.25em] text-slate-500"
+          >MENU / NAVIGATION</span
+        >
+        <button
+          id="closeSidebar"
+          aria-label="Close menu"
+          class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-brand-accent hover:text-brand-accent transition"
+        >
+          <iconify-icon icon="lucide:x"></iconify-icon>
+        </button>
+      </div>
+      <nav class="flex-1 px-6 md:px-8 py-10 flex flex-col gap-1">
+        <a
+          href="#hero"
+          class="sidebar-link group flex items-baseline justify-between py-4 border-b border-slate-800/60"
+        >
+          <span
+            class="text-4xl md:text-5xl font-black text-white group-hover:text-brand-accent transition"
+            >HOME</span
+          >
+          <span class="font-mono text-xs text-slate-600">01</span>
+        </a>
+        <a
+          href="#work"
+          class="sidebar-link group flex items-baseline justify-between py-4 border-b border-slate-800/60"
+        >
+          <span
+            class="text-4xl md:text-5xl font-black text-white group-hover:text-brand-accent transition"
+            >WORK</span
+          >
+          <span class="font-mono text-xs text-slate-600">02</span>
+        </a>
+        <a
+          href="#blog"
+          class="sidebar-link group flex items-baseline justify-between py-4 border-b border-slate-800/60"
+        >
+          <span
+            class="text-4xl md:text-5xl font-black text-white group-hover:text-brand-accent transition"
+            >LAB NOTES</span
+          >
+          <span class="font-mono text-xs text-slate-600">03</span>
+        </a>
+        <a
+          href="#contact"
+          class="sidebar-link group flex items-baseline justify-between py-4 border-b border-slate-800/60"
+        >
+          <span
+            class="text-4xl md:text-5xl font-black text-white group-hover:text-brand-accent transition"
+            >CONTACT</span
+          >
+          <span class="font-mono text-xs text-slate-600">04</span>
+        </a>
+      </nav>
+      <div class="px-6 md:px-8 py-6 border-t border-slate-800">
+        <div
+          class="font-mono text-[10px] tracking-[0.25em] text-slate-500 mb-4"
+        >
+          FIND ME
+        </div>
+        <div class="flex flex-col gap-3 font-mono text-xs">
+          <a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-between text-slate-400 hover:text-brand-accent transition"
+          >
+            <span class="flex items-center gap-2"
+              ><iconify-icon icon="lucide:github"></iconify-icon> GitHub</span
+            >
+            <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-between text-slate-400 hover:text-brand-accent transition"
+          >
+            <span class="flex items-center gap-2"
+              ><iconify-icon icon="lucide:linkedin"></iconify-icon>
+              LinkedIn</span
+            >
+            <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
+          </a>
+          <a
+            href="https://hackaday.io"
+            target="_blank"
+            rel="noopener"
+            class="flex items-center justify-between text-slate-400 hover:text-brand-accent transition"
+          >
+            <span class="flex items-center gap-2"
+              ><iconify-icon icon="lucide:cpu"></iconify-icon> Hackaday.io</span
+            >
+            <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <aside
+      id="panel"
+      class="fixed inset-y-0 right-0 w-full md:w-[420px] bg-brand-dark-2 border-l border-slate-800 z-[70] translate-x-full transition-transform duration-500 ease-[cubic-bezier(.2,.8,.2,1)] flex flex-col"
+    >
+      <div
+        class="h-20 px-6 md:px-8 flex items-center justify-between border-b border-slate-800"
+      >
+        <span class="font-mono text-[11px] tracking-[0.25em] text-slate-500"
+          >ACTIVE LAB / PROJECTS</span
+        >
+        <button
+          id="closePanel"
+          aria-label="Close panel"
+          class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-brand-accent hover:text-brand-accent transition"
+        >
+          <iconify-icon icon="lucide:x"></iconify-icon>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto px-6 md:px-8 py-8 space-y-6">
+        <div
+          class="flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-slate-500"
+        >
+          <span class="w-1.5 h-1.5 bg-green-500 rounded-full pulse-dot"></span>
+          LIVE · WEEK 46 · V1
+        </div>
+        <div class="space-y-4">
+          <div
+            class="p-4 border border-slate-800 rounded-lg hover:border-brand-accent/40 transition group"
+          >
+            <div class="flex justify-between items-start mb-2">
+              <span
+                class="font-mono text-[10px] tracking-widest text-brand-accent"
+                >IN PROGRESS</span
+              >
+              <iconify-icon
+                icon="lucide:radio"
+                class="text-slate-600 group-hover:text-brand-accent transition"
+              ></iconify-icon>
+            </div>
+            <h4 class="text-white font-bold mb-1">RISC-V Softcore on FPGA</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">
+              Menulis RV32I softcore sederhana di Verilog + toolchain LLVM.
+            </p>
+          </div>
+          <div
+            class="p-4 border border-slate-800 rounded-lg hover:border-brand-accent/40 transition group"
+          >
+            <div class="flex justify-between items-start mb-2">
+              <span
+                class="font-mono text-[10px] tracking-widest text-yellow-400"
+                >PROTOTYPE</span
+              >
+              <iconify-icon
+                icon="lucide:battery-charging"
+                class="text-slate-600 group-hover:text-brand-accent transition"
+              ></iconify-icon>
+            </div>
+            <h4 class="text-white font-bold mb-1">EV Battery Telemetry</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">
+              ESP32 + LTspice modeling untuk monitoring BMS dan analisis siklus
+              termal.
+            </p>
+          </div>
+          <div
+            class="p-4 border border-slate-800 rounded-lg hover:border-brand-accent/40 transition group"
+          >
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-mono text-[10px] tracking-widest text-blue-400"
+                >RESEARCH</span
+              >
+              <iconify-icon
+                icon="lucide:atom"
+                class="text-slate-600 group-hover:text-brand-accent transition"
+              ></iconify-icon>
+            </div>
+            <h4 class="text-white font-bold mb-1">Green Hydrogen Simulation</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">
+              Studi elektrolisis air dengan sumber PLTS — perhitungan efisiensi
+              & LCOH.
+            </p>
+          </div>
+          <div
+            class="p-4 border border-slate-800 rounded-lg hover:border-brand-accent/40 transition group"
+          >
+            <div class="flex justify-between items-start mb-2">
+              <span class="font-mono text-[10px] tracking-widest text-slate-400"
+                >BACKLOG</span
+              >
+              <iconify-icon
+                icon="lucide:list-todo"
+                class="text-slate-600 group-hover:text-brand-accent transition"
+              ></iconify-icon>
+            </div>
+            <h4 class="text-white font-bold mb-1">Leweung API v2</h4>
+            <p class="text-slate-500 text-xs leading-relaxed">
+              Refactor gateway ke Go 1.23, tambah observability + Redis cluster.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="px-6 md:px-8 py-5 border-t border-slate-800">
+        <a
+          href="#contact"
+          class="block w-full text-center font-mono text-[11px] tracking-[0.2em] py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-brand-dark transition rounded-full"
+        >
+          KOLABORASI →
+        </a>
+      </div>
+    </aside>
+
+    <main class="relative z-10">
+      <!-- ===== HERO ===== -->
+      <section
+        id="hero"
+        class="relative min-h-screen overflow-hidden pt-24 pb-16 px-6 md:px-12 scroll-mt-24"
+      >
+        <canvas id="heroParticles" aria-hidden="true"></canvas>
+
+        <div class="relative max-w-[1600px] mx-auto">
+          <div
+            class="flex justify-between font-mono text-[10px] md:text-xs tracking-[0.25em] text-slate-500 pt-8"
+          >
+            <span>001 — HERO</span>
+            <span>BANDUNG, ID · 2025 · V1</span>
+          </div>
+
+          <div class="relative mt-6 md:mt-12">
+            <!-- portrait — FULL COLOR -->
+            <div
+              class="absolute right-0 md:-right-4 top-0 w-[65%] md:w-[42%] h-[420px] md:h-[560px] overflow-hidden z-0"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80&auto=format&fit=crop"
+                alt="Rendi Damara"
+                class="w-full h-full object-cover object-top contrast-105 saturate-110"
+                loading="eager"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/30 to-transparent"
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-transparent to-brand-dark/40"
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-brand-dark"
+              ></div>
+            </div>
+
+            <h1
+              class="relative z-10 font-black text-white tracking-[-0.05em] leading-[0.8] text-[19vw] md:text-[12rem]"
+            >
+              RENDI
+            </h1>
+            <h1
+              class="relative z-10 font-black text-stroke tracking-[-0.05em] leading-[0.8] text-[19vw] md:text-[12rem] whitespace-nowrap"
+            >
+              DAMARA
+            </h1>
+          </div>
+
+          <div
+            class="relative z-20 mt-10 md:mt-20 grid md:grid-cols-2 gap-8 items-end"
+          >
+            <div class="max-w-md">
+              <div
+                class="font-mono text-[10px] tracking-[0.3em] text-brand-accent mb-3"
+              >
+                // SOFTWARE × HARDWARE
+              </div>
+              <p class="text-slate-400 leading-relaxed text-sm md:text-base">
+                Backend developer & hardware engineer yang membangun sistem dari
+                <span class="text-white">logika</span> hingga
+                <span class="text-white">sirkuit</span>. Merancang API Go,
+                eksperimen PCB, dan riset energi terbarukan.
+              </p>
+            </div>
+            <div class="md:justify-self-end">
+              <div
+                class="glass border border-white/10 rounded-full px-5 py-3 flex items-center gap-3 font-mono text-[10px] md:text-xs tracking-[0.2em] text-white"
+              >
+                <span
+                  class="w-2 h-2 bg-green-500 rounded-full pulse-dot"
+                ></span>
+                WEAK ENGINEER — AVAILABLE FOR FREELANCE
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="mt-16 md:mt-24 flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-slate-600"
+          >
+            <iconify-icon
+              icon="lucide:arrow-down"
+              class="animate-bounce"
+            ></iconify-icon>
+            SCROLL TO EXPLORE
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ABOUT ===== -->
+      <section
+        id="about"
+        class="relative border-t border-slate-800 scroll-mt-24"
+      >
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12 py-24 md:py-32">
+          <div class="grid md:grid-cols-12 gap-10">
+            <div class="md:col-span-4 reveal">
+              <div
+                class="font-mono text-[11px] tracking-[0.3em] text-brand-accent mb-4"
+              >
+                002 — ABOUT
+              </div>
+              <h2
+                class="text-4xl md:text-5xl font-black text-white leading-[0.95]"
+              >
+                Dari SMK<br />ke
+                <span class="text-stroke-accent">Elektro</span>.
+              </h2>
+              <p
+                class="mt-6 font-mono text-[11px] text-slate-500 leading-relaxed"
+              >
+                "Weak Engineer" bukan label rendah diri — ini pengingat bahwa di
+                setiap sistem yang dibangun, selalu ada ruang untuk belajar.
+              </p>
+            </div>
+            <div class="md:col-span-8 reveal">
+              <p class="text-lg md:text-xl text-slate-300 leading-relaxed mb-4">
+                Perjalanan dimulai sebagai siswa
+                <span class="text-white font-medium">SMK Doa Bangsa</span>
+                jurusan RPL (Axioo Class Program Batch 6), lalu berlanjut ke
+                <span class="text-white font-medium"
+                  >S1 Teknik Elektro Telkom University</span
+                >
+                — semester 3 saat ini.
+              </p>
+              <p class="text-slate-400 leading-relaxed mb-10">
+                Fokus di persimpangan software & hardware: arsitektur backend
+                berskala, sistem tertanam, dan riset energi terbarukan. Percaya
+                bahwa engineer yang baik bisa membaca <em>datasheet</em> dan
+                <em>pull request</em> dengan intensitas yang sama.
+              </p>
+
+              <div
+                class="grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-800 border border-slate-800 rounded-lg overflow-hidden"
+              >
+                <div class="bg-brand-dark p-4">
+                  <div
+                    class="font-mono text-[10px] text-slate-500 tracking-widest"
+                  >
+                    SOFTWARE
+                  </div>
+                  <div class="text-white font-bold text-sm mt-1">
+                    Go · Fiber
+                  </div>
+                </div>
+                <div class="bg-brand-dark p-4">
+                  <div
+                    class="font-mono text-[10px] text-slate-500 tracking-widest"
+                  >
+                    DATA
+                  </div>
+                  <div class="text-white font-bold text-sm mt-1">
+                    Redis · Postgres
+                  </div>
+                </div>
+                <div class="bg-brand-dark p-4">
+                  <div
+                    class="font-mono text-[10px] text-slate-500 tracking-widest"
+                  >
+                    HARDWARE
+                  </div>
+                  <div class="text-white font-bold text-sm mt-1">
+                    ESP32 · Arduino
+                  </div>
+                </div>
+                <div class="bg-brand-dark p-4">
+                  <div
+                    class="font-mono text-[10px] text-slate-500 tracking-widest"
+                  >
+                    DESIGN
+                  </div>
+                  <div class="text-white font-bold text-sm mt-1">
+                    Fusion · LTspice
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-20 reveal">
+            <div class="flex items-center justify-between mb-6">
+              <div
+                class="font-mono text-[10px] tracking-[0.3em] text-slate-500"
+              >
+                TECH STACK / TOOLKIT
+              </div>
+              <div
+                class="font-mono text-[10px] tracking-[0.3em] text-slate-600"
+              >
+                [ 16 ITEMS ]
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-800 border border-slate-800 rounded-lg overflow-hidden"
+            >
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Go</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Fiber</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Redis</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">PostgreSQL</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Docker</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Git / GitHub</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">React</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Vite</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">JavaScript</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">C++</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Autodesk Fusion</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Arduino</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">ESP32</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">Wokwi</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">LTspice</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+              <div
+                class="bg-brand-dark p-5 flex items-center justify-between group hover:bg-brand-dark-3 transition"
+              >
+                <span class="font-mono text-sm text-white">PCB Design</span
+                ><span
+                  class="text-brand-accent opacity-0 group-hover:opacity-100 transition"
+                  >●</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== EXPERIENCE — FULL COLOR ===== -->
+      <section
+        id="experience"
+        class="relative border-t border-slate-800 scroll-mt-24"
+      >
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12 py-24 md:py-32">
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal"
+          >
+            <div>
+              <div
+                class="font-mono text-[11px] tracking-[0.3em] text-brand-accent mb-4"
+              >
+                003 — EXPERIENCE
+              </div>
+              <h2
+                class="text-4xl md:text-6xl font-black text-white leading-[0.95]"
+              >
+                Rekam <span class="text-stroke">Jejak</span>.
+              </h2>
+            </div>
+            <p class="max-w-sm text-slate-500 text-sm leading-relaxed">
+              Dari lantai bengkel CNC sampai terminal server — semua bagian dari
+              proses belajar yang sama.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <article
+              class="reveal group relative border border-slate-800 rounded-lg overflow-hidden bg-brand-dark-2 hover:border-slate-700 transition"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=900&q=80&auto=format&fit=crop"
+                  alt="FABLABDG"
+                  loading="lazy"
+                  class="w-full h-full object-cover contrast-105 saturate-110 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-3">
+                  <div
+                    class="font-mono text-[10px] tracking-widest text-brand-accent"
+                  >
+                    2023 · PKL
+                  </div>
+                  <iconify-icon
+                    icon="lucide:arrow-up-right"
+                    class="text-slate-600 group-hover:text-brand-accent transition"
+                  ></iconify-icon>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">FABLABDG</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Praktik kerja lapangan: mengoperasikan CNC Router & CNC Laser,
+                  fabrikasi komponen presisi, dan workflow digital fabrication.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="reveal group relative border border-slate-800 rounded-lg overflow-hidden bg-brand-dark-2 hover:border-slate-700 transition"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=900&q=80&auto=format&fit=crop"
+                  alt="Freelance Backend"
+                  loading="lazy"
+                  class="w-full h-full object-cover contrast-105 saturate-110 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-3">
+                  <div
+                    class="font-mono text-[10px] tracking-widest text-brand-accent"
+                  >
+                    2023 — SEKARANG
+                  </div>
+                  <iconify-icon
+                    icon="lucide:arrow-up-right"
+                    class="text-slate-600 group-hover:text-brand-accent transition"
+                  ></iconify-icon>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Freelance Backend Developer
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Arsitektur REST API, desain database, deployment
+                  containerized, dan optimasi query untuk klien UMKM &
+                  komunitas.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="reveal group relative border border-slate-800 rounded-lg overflow-hidden bg-brand-dark-2 hover:border-slate-700 transition"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80&auto=format&fit=crop"
+                  alt="Leweung Pixel Tech"
+                  loading="lazy"
+                  class="w-full h-full object-cover contrast-105 saturate-110 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-3">
+                  <div
+                    class="font-mono text-[10px] tracking-widest text-brand-accent"
+                  >
+                    FOUNDER
+                  </div>
+                  <iconify-icon
+                    icon="lucide:arrow-up-right"
+                    class="text-slate-600 group-hover:text-brand-accent transition"
+                  ></iconify-icon>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Leweung Pixel Tech
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Inisiatif lab independen — inkubasi proyek embedded,
+                  eksperimen PCB, dan riset kecil di bidang energi.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="reveal group relative border border-slate-800 rounded-lg overflow-hidden bg-brand-dark-2 hover:border-slate-700 transition"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80&auto=format&fit=crop"
+                  alt="Poros Elektro"
+                  loading="lazy"
+                  class="w-full h-full object-cover contrast-105 saturate-110 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex justify-between items-start mb-3">
+                  <div
+                    class="font-mono text-[10px] tracking-widest text-brand-accent"
+                  >
+                    ORGANIZER
+                  </div>
+                  <iconify-icon
+                    icon="lucide:arrow-up-right"
+                    class="text-slate-600 group-hover:text-brand-accent transition"
+                  ></iconify-icon>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Poros Elektro</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Mengorganisir komunitas mahasiswa Teknik Elektro — workshop,
+                  study club, dan kolaborasi proyek lintas disiplin.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== WORK — tetap mix-blend-luminosity (sesuai BRD) ===== -->
+      <section
+        id="work"
+        class="relative border-t border-slate-800 scroll-mt-24"
+      >
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12 py-24 md:py-32">
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal"
+          >
+            <div>
+              <div
+                class="font-mono text-[11px] tracking-[0.3em] text-brand-accent mb-4"
+              >
+                004 — SIGNATURE WORK
+              </div>
+              <h2
+                class="text-4xl md:text-6xl font-black text-white leading-[0.95]"
+              >
+                Karya<br /><span class="text-stroke">Terpilih</span>.
+              </h2>
+            </div>
+            <p class="max-w-sm text-slate-500 text-sm leading-relaxed">
+              Kumpulan proyek lintas disiplin — software, hardware, dan riset
+              mandiri.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <article
+              class="reveal md:col-span-8 group relative aspect-[16/10] md:aspect-auto md:min-h-[480px] rounded-lg overflow-hidden border border-slate-800 hover:border-slate-700 transition"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format&fit=crop"
+                alt="Leweung API Gateway"
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/50 to-transparent"
+              ></div>
+              <div
+                class="relative h-full p-6 md:p-10 flex flex-col justify-end"
+              >
+                <div
+                  class="font-mono text-[10px] tracking-widest text-brand-accent mb-2"
+                >
+                  001 — SOFTWARE · 2024
+                </div>
+                <h3 class="text-2xl md:text-4xl font-black text-white mb-3">
+                  Leweung API Gateway
+                </h3>
+                <p class="text-slate-300 text-sm max-w-lg mb-5">
+                  High-throughput gateway dengan Fiber, Redis caching, dan
+                  PostgreSQL. Dirancang untuk multi-tenant SaaS kecil.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="font-mono text-[10px] px-2 py-1 border border-slate-600 rounded text-slate-300"
+                    >Go</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-2 py-1 border border-slate-600 rounded text-slate-300"
+                    >Fiber</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-2 py-1 border border-slate-600 rounded text-slate-300"
+                    >Redis</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-2 py-1 border border-slate-600 rounded text-slate-300"
+                    >Docker</span
+                  >
+                </div>
+                <a
+                  href="#"
+                  class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest text-white hover:text-brand-accent transition"
+                >
+                  VIEW ON GITHUB
+                  <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
+                </a>
+              </div>
+            </article>
+
+            <article
+              class="reveal md:col-span-4 group relative aspect-[4/3] md:aspect-auto rounded-lg overflow-hidden border border-slate-800 hover:border-slate-700 transition"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80&auto=format&fit=crop"
+                alt="EV Battery"
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"
+              ></div>
+              <div class="relative h-full p-6 flex flex-col justify-end">
+                <div
+                  class="font-mono text-[10px] tracking-widest text-brand-accent mb-2"
+                >
+                  002 — HARDWARE / EV
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">
+                  EV Battery Telemetry
+                </h3>
+                <p class="text-slate-400 text-xs mb-3">
+                  ESP32 + LTspice BMS monitor
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="font-mono text-[10px] px-2 py-0.5 border border-slate-600 rounded text-slate-300"
+                    >ESP32</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-2 py-0.5 border border-slate-600 rounded text-slate-300"
+                    >LTspice</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="reveal md:col-span-4 group relative aspect-[4/3] md:aspect-auto rounded-lg overflow-hidden border border-slate-800 hover:border-slate-700 transition"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1608564697071-ddf911d81370?w=800&q=80&auto=format&fit=crop"
+                alt="RISC-V"
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"
+              ></div>
+              <div class="relative h-full p-6 flex flex-col justify-end">
+                <div
+                  class="font-mono text-[10px] tracking-widest text-brand-accent mb-2"
+                >
+                  003 — RESEARCH
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">
+                  RISC-V Softcore
+                </h3>
+                <p class="text-slate-400 text-xs mb-3">
+                  RV32I on FPGA, custom toolchain
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="font-mono text-[10px] px-2 py-0.5 border border-slate-600 rounded text-slate-300"
+                    >Verilog</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-2 py-0.5 border border-slate-600 rounded text-slate-300"
+                    >FPGA</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="reveal md:col-span-4 group relative aspect-[4/3] md:aspect-auto rounded-lg overflow-hidden border border-slate-800 hover:border-slate-700 transition"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80&auto=format&fit=crop"
+                alt="Green Hydrogen"
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"
+              ></div>
+              <div class="relative h-full p-6 flex flex-col justify-end">
+                <div
+                  class="font-mono text-[10px] tracking-widest text-brand-accent mb-2"
+                >
+                  004 — RESEARCH
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Green Hydrogen Sim
+                </h3>
+                <p class="text-slate-400 text-xs mb-3">
+                  Efisiensi elektrolisis + PLTS
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="font-mono text-[10px] px-2 py-0.5 border border-slate-600 rounded text-slate-300"
+                    >Python</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-2 py-0.5 border border-slate-600 rounded text-slate-300"
+                    >Matlab</span
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="reveal md:col-span-12 group relative aspect-[16/9] md:aspect-[21/9] rounded-lg overflow-hidden border border-slate-800 hover:border-slate-700 transition"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80&auto=format&fit=crop"
+                alt="Poros Elektro Platform"
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover:opacity-70 group-hover:scale-105 transition-all duration-700"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/60 to-transparent"
+              ></div>
+              <div
+                class="relative h-full p-6 md:p-10 flex flex-col justify-end max-w-2xl"
+              >
+                <div
+                  class="font-mono text-[10px] tracking-widest text-brand-accent mb-2"
+                >
+                  005 — SOFTWARE
+                </div>
+                <h3 class="text-2xl md:text-4xl font-black text-white mb-3">
+                  Poros Elektro Platform
+                </h3>
+                <p class="text-slate-300 text-sm mb-4">
+                  Platform internal komunitas: manajemen event, materi, dan
+                  kolaborasi proyek. Dibangun dengan React + Vite + Go API.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="font-mono text-[10px] px-2 py-1 border border-slate-600 rounded text-slate-300"
+                    >React</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-2 py-1 border border-slate-600 rounded text-slate-300"
+                    >Vite</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-2 py-1 border border-slate-600 rounded text-slate-300"
+                    >Go</span
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== LAB NOTES — FULL COLOR (diubah) ===== -->
+      <section
+        id="blog"
+        class="relative border-t border-slate-800 scroll-mt-24"
+      >
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12 py-24 md:py-32">
+          <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal"
+          >
+            <div>
+              <div
+                class="font-mono text-[11px] tracking-[0.3em] text-brand-accent mb-4"
+              >
+                005 — LAB NOTES
+              </div>
+              <h2
+                class="text-4xl md:text-6xl font-black text-white leading-[0.95]"
+              >
+                Catatan<br /><span class="text-stroke">Riset</span>.
+              </h2>
+            </div>
+            <p class="max-w-sm text-slate-500 text-sm leading-relaxed">
+              Tulisan pendek tentang hal-hal yang belum jadi proyek utuh — tapi
+              sudah mengganggu pikiran.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <article
+              class="reveal group border border-slate-800 rounded-lg overflow-hidden bg-brand-dark-2 hover:border-brand-accent/40 transition"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&auto=format&fit=crop"
+                  alt="Power electronics"
+                  loading="lazy"
+                  class="w-full h-full object-cover contrast-105 saturate-110 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="font-mono text-[10px] tracking-widest text-brand-accent mb-2"
+                >
+                  2025.02.14 · POWER ELECTRONICS
+                </div>
+                <h3
+                  class="text-lg font-bold text-white mb-2 group-hover:text-brand-accent transition leading-snug"
+                >
+                  Analisis Buck Converter pada Beban Dinamis
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                  Eksperimen LTspice untuk melihat ripple output saat beban
+                  berubah mendadak — catatan tentang loop compensation.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="reveal group border border-slate-800 rounded-lg overflow-hidden bg-brand-dark-2 hover:border-brand-accent/40 transition"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80&auto=format&fit=crop"
+                  alt="Golang"
+                  loading="lazy"
+                  class="w-full h-full object-cover contrast-105 saturate-110 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="font-mono text-[10px] tracking-widest text-brand-accent mb-2"
+                >
+                  2025.01.22 · BACKEND
+                </div>
+                <h3
+                  class="text-lg font-bold text-white mb-2 group-hover:text-brand-accent transition leading-snug"
+                >
+                  Arsitektur Middleware di Golang Fiber
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                  Pola komposisi middleware yang bersih — dari auth, logging,
+                  sampai rate limiter — tanpa spaghetti handler.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="reveal group border border-slate-800 rounded-lg overflow-hidden bg-brand-dark-2 hover:border-brand-accent/40 transition"
+            >
+              <div class="aspect-[16/10] overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80&auto=format&fit=crop"
+                  alt="Control systems"
+                  loading="lazy"
+                  class="w-full h-full object-cover contrast-105 saturate-110 group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div class="p-6">
+                <div
+                  class="font-mono text-[10px] tracking-widest text-brand-accent mb-2"
+                >
+                  2024.12.05 · CONTROL SYSTEMS
+                </div>
+                <h3
+                  class="text-lg font-bold text-white mb-2 group-hover:text-brand-accent transition leading-snug"
+                >
+                  PID untuk Sistem Termal: Catatan Belajar
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">
+                  Membaca ulang literatur reaktor nuklir sebagai studi kasus
+                  sistem kendali — kenapa integral windup berbahaya.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TESTIMONIALS ===== -->
+      <section id="testimonials" class="relative border-t border-slate-800">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12 py-24 md:py-32">
+          <div class="text-center mb-12 reveal">
+            <div
+              class="font-mono text-[11px] tracking-[0.3em] text-brand-accent mb-4"
+            >
+              006 — TESTIMONIALS
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black text-white">
+              Kata <span class="text-stroke">Mereka</span>.
+            </h2>
+          </div>
+
+          <div class="max-w-3xl mx-auto relative reveal">
+            <iconify-icon
+              icon="lucide:quote"
+              class="text-brand-accent/30 text-6xl mb-4 mx-auto block"
+            ></iconify-icon>
+            <div id="testimonialTrack" class="relative min-h-[180px]">
+              <blockquote class="testimonial active text-center">
+                <p class="text-xl md:text-2xl text-white leading-relaxed mb-6">
+                  "Rendi punya kombinasi langka: bisa baca datasheet ESP32 dan
+                  nulis query Postgres yang efisien. Itu yang bikin dia beda."
+                </p>
+                <footer
+                  class="font-mono text-[11px] tracking-[0.2em] text-slate-500"
+                >
+                  — MENTOR PKL · FABLABDG
+                </footer>
+              </blockquote>
+              <blockquote class="testimonial text-center">
+                <p class="text-xl md:text-2xl text-white leading-relaxed mb-6">
+                  "API yang dia bangun untuk kami jalan 8 bulan tanpa downtime.
+                  Dokumentasinya jelas, komunikasinya cepat."
+                </p>
+                <footer
+                  class="font-mono text-[11px] tracking-[0.2em] text-slate-500"
+                >
+                  — KLIEN FREELANCE · UMKM KOPI
+                </footer>
+              </blockquote>
+              <blockquote class="testimonial text-center">
+                <p class="text-xl md:text-2xl text-white leading-relaxed mb-6">
+                  "Semangat belajarnya menular. Di Poros Elektro, dia yang
+                  paling sering bawa eksperimen baru ke meja diskusi."
+                </p>
+                <footer
+                  class="font-mono text-[11px] tracking-[0.2em] text-slate-500"
+                >
+                  — REKAN · POROS ELEKTRO
+                </footer>
+              </blockquote>
+            </div>
+
+            <div class="flex items-center justify-center gap-3 mt-10">
+              <button
+                id="prevTesti"
+                type="button"
+                aria-label="Previous testimonial"
+                class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-brand-accent hover:text-brand-accent transition"
+              >
+                <iconify-icon icon="lucide:arrow-left"></iconify-icon>
+              </button>
+              <div id="testiDots" class="flex gap-2"></div>
+              <button
+                id="nextTesti"
+                type="button"
+                aria-label="Next testimonial"
+                class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:border-brand-accent hover:text-brand-accent transition"
+              >
+                <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      id="contact"
+      class="relative z-10 border-t border-slate-800 scroll-mt-24"
+    >
+      <div class="max-w-[1600px] mx-auto px-6 md:px-12 py-20 md:py-28">
+        <div class="grid md:grid-cols-12 gap-12">
+          <div class="md:col-span-5 reveal">
+            <div
+              class="font-mono text-[11px] tracking-[0.3em] text-brand-accent mb-4"
+            >
+              007 — CONTACT
+            </div>
+            <h2
+              class="text-4xl md:text-5xl font-black text-white leading-[0.95] mb-6"
+            >
+              Mari<br /><span class="text-stroke">Bangun</span><br />Sesuatu.
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-8">
+              Terbuka untuk freelance, kolaborasi riset, atau sekadar diskusi
+              teknis. Respons dalam 1×24 jam.
+            </p>
+
+            <form id="contactForm" class="space-y-3">
+              <div>
+                <label
+                  for="cf-name"
+                  class="font-mono text-[10px] tracking-widest text-slate-500 mb-2 block"
+                  >NAME</label
+                >
+                <input
+                  id="cf-name"
+                  name="name"
+                  type="text"
+                  required
+                  class="w-full bg-transparent border border-slate-700 rounded px-4 py-3 text-sm text-white transition"
+                  placeholder="nama kamu"
+                />
+              </div>
+              <div>
+                <label
+                  for="cf-email"
+                  class="font-mono text-[10px] tracking-widest text-slate-500 mb-2 block"
+                  >EMAIL</label
+                >
+                <input
+                  id="cf-email"
+                  name="email"
+                  type="email"
+                  required
+                  class="w-full bg-transparent border border-slate-700 rounded px-4 py-3 text-sm text-white transition"
+                  placeholder="you@domain.com"
+                />
+              </div>
+              <div>
+                <label
+                  for="cf-message"
+                  class="font-mono text-[10px] tracking-widest text-slate-500 mb-2 block"
+                  >MESSAGE</label
+                >
+                <textarea
+                  id="cf-message"
+                  name="message"
+                  required
+                  rows="3"
+                  class="w-full bg-transparent border border-slate-700 rounded px-4 py-3 text-sm text-white transition resize-none"
+                  placeholder="ceritakan proyekmu..."
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full font-mono text-[11px] tracking-[0.25em] py-3.5 bg-brand-accent text-brand-dark font-bold rounded hover:bg-white transition flex items-center justify-center gap-2"
+              >
+                SEND MESSAGE
+                <iconify-icon icon="lucide:send"></iconify-icon>
+              </button>
+            </form>
+          </div>
+
+          <div class="md:col-span-7 reveal">
+            <div
+              class="font-mono text-[10px] tracking-[0.3em] text-slate-500 mb-6"
+            >
+              NAVIGATION / SITEMAP
+            </div>
+            <a
+              href="#hero"
+              class="group flex items-baseline justify-between border-t border-slate-800 py-4 md:py-5"
+            >
+              <span
+                class="text-3xl md:text-5xl font-black text-white group-hover:text-brand-accent transition"
+                >HOME</span
+              >
+              <span class="font-mono text-xs text-slate-600">01</span>
+            </a>
+            <a
+              href="#work"
+              class="group flex items-baseline justify-between border-t border-slate-800 py-4 md:py-5"
+            >
+              <span
+                class="text-3xl md:text-5xl font-black text-white group-hover:text-brand-accent transition"
+                >WORK</span
+              >
+              <span class="font-mono text-xs text-slate-600">02</span>
+            </a>
+            <a
+              href="#blog"
+              class="group flex items-baseline justify-between border-t border-slate-800 py-4 md:py-5"
+            >
+              <span
+                class="text-3xl md:text-5xl font-black text-white group-hover:text-brand-accent transition"
+                >LAB NOTES</span
+              >
+              <span class="font-mono text-xs text-slate-600">03</span>
+            </a>
+            <a
+              href="#contact"
+              class="group flex items-baseline justify-between border-t border-b border-slate-800 py-4 md:py-5"
+            >
+              <span
+                class="text-3xl md:text-5xl font-black text-white group-hover:text-brand-accent transition"
+                >CONTACT</span
+              >
+              <span class="font-mono text-xs text-slate-600">04</span>
+            </a>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest px-4 py-2 border border-slate-700 rounded-full text-slate-400 hover:border-brand-accent hover:text-brand-accent transition"
+              >
+                <iconify-icon icon="lucide:github"></iconify-icon> GITHUB
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest px-4 py-2 border border-slate-700 rounded-full text-slate-400 hover:border-brand-accent hover:text-brand-accent transition"
+              >
+                <iconify-icon icon="lucide:linkedin"></iconify-icon> LINKEDIN
+              </a>
+              <a
+                href="https://hackaday.io"
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest px-4 py-2 border border-slate-700 rounded-full text-slate-400 hover:border-brand-accent hover:text-brand-accent transition"
+              >
+                <iconify-icon icon="lucide:cpu"></iconify-icon> HACKADAY
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800 px-6 md:px-12 py-6">
+        <div
+          class="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] tracking-[0.25em] text-slate-500"
+        >
+          <span>© 2025 RENDI DAMARA · WEAK ENGINEER · V1 NO-VIDEO</span>
+          <span class="flex items-center gap-2"
+            ><span
+              class="w-1.5 h-1.5 bg-green-500 rounded-full pulse-dot"
+            ></span>
+            SYSTEM ONLINE · BANDUNG</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const sidebar = document.getElementById("sidebar");
+        const panel = document.getElementById("panel");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+        const panelOverlay = document.getElementById("panelOverlay");
+
+        function openSidebar() {
+          sidebar.classList.remove("-translate-x-full");
+          sidebarOverlay.classList.remove("hidden");
+          requestAnimationFrame(() =>
+            sidebarOverlay.classList.remove("opacity-0"),
+          );
+          document.body.style.overflow = "hidden";
+        }
+        function closeSidebar() {
+          sidebar.classList.add("-translate-x-full");
+          sidebarOverlay.classList.add("opacity-0");
+          setTimeout(() => sidebarOverlay.classList.add("hidden"), 300);
+          document.body.style.overflow = "";
+        }
+        function openPanel() {
+          panel.classList.remove("translate-x-full");
+          panelOverlay.classList.remove("hidden");
+          requestAnimationFrame(() =>
+            panelOverlay.classList.remove("opacity-0"),
+          );
+          document.body.style.overflow = "hidden";
+        }
+        function closePanel() {
+          panel.classList.add("translate-x-full");
+          panelOverlay.classList.add("opacity-0");
+          setTimeout(() => panelOverlay.classList.add("hidden"), 300);
+          document.body.style.overflow = "";
+        }
+
+        document
+          .getElementById("menuBtn")
+          .addEventListener("click", openSidebar);
+        document
+          .getElementById("closeSidebar")
+          .addEventListener("click", closeSidebar);
+        sidebarOverlay.addEventListener("click", closeSidebar);
+
+        document
+          .getElementById("panelBtn")
+          .addEventListener("click", openPanel);
+        document
+          .getElementById("closePanel")
+          .addEventListener("click", closePanel);
+        panelOverlay.addEventListener("click", closePanel);
+
+        document
+          .querySelectorAll(".sidebar-link")
+          .forEach((a) => a.addEventListener("click", closeSidebar));
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            closeSidebar();
+            closePanel();
+          }
+        });
+
+        const progressBar = document.getElementById("progress-bar");
+        function updateProgress() {
+          const scrollTop = window.scrollY;
+          const docHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          progressBar.style.width = pct + "%";
+        }
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+        );
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => revealObserver.observe(el));
+
+        document.getElementById("downloadCv").addEventListener("click", (e) => {
+          e.preventDefault();
+          const cv = `RENDI DAMARA (REDDRA)
+Backend Developer & Hardware Engineer
+Bandung, Indonesia
+
+================================================
+SUMMARY
+================================================
+Cross-disciplinary engineer dengan fokus pada backend system
+dan embedded/hardware. Berpengalaman membangun REST API
+production-grade, fabrikasi digital, dan riset energi terbarukan.
+
+================================================
+EXPERIENCE
+================================================
+• Freelance Backend Developer (2023–sekarang)
+  Arsitektur API, desain database, deployment containerized.
+
+• PKL FABLABDG (2023)
+  Operator CNC Router & Laser, digital fabrication.
+
+• Founder — Leweung Pixel Tech
+  Lab independen: embedded, PCB, riset energi.
+
+• Organizer — Poros Elektro
+  Komunitas mahasiswa Teknik Elektro.
+
+================================================
+EDUCATION
+================================================
+• S1 Teknik Elektro — Telkom University (2023–sekarang)
+• SMK Doa Bangsa — RPL, Axioo Class Program Batch 6
+
+================================================
+SKILLS
+================================================
+Software : Go, Fiber, Redis, PostgreSQL, Docker, Git, React,
+           Vite, JavaScript, C++
+Hardware : Autodesk Fusion, Arduino, ESP32, Wokwi, LTspice,
+           PCB Design
+
+================================================
+CONTACT
+================================================
+github.com/rendidamara
+linkedin.com/in/rendidamara
+hackaday.io/rendidamara
+`;
+          const blob = new Blob([cv], { type: "text/plain;charset=utf-8" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "Rendi-Damara-CV.txt";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          showToast("CV BERHASIL DIUNDUH");
+        });
+
+        let toastTimer;
+        function showToast(msg) {
+          let t = document.querySelector(".toast");
+          if (!t) {
+            t = document.createElement("div");
+            t.className = "toast";
+            document.body.appendChild(t);
+          }
+          t.textContent = msg;
+          requestAnimationFrame(() => t.classList.add("show"));
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => t.classList.remove("show"), 2800);
+        }
+
+        const testimonials = document.querySelectorAll(".testimonial");
+        const dotsWrap = document.getElementById("testiDots");
+        let testiIdx = 0;
+
+        testimonials.forEach((_, i) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "w-2 h-2 rounded-full bg-slate-700 transition";
+          dot.setAttribute("aria-label", "Testimonial " + (i + 1));
+          dot.addEventListener("click", () => goTesti(i));
+          dotsWrap.appendChild(dot);
+        });
+        const dots = dotsWrap.querySelectorAll("button");
+
+        function goTesti(i) {
+          testiIdx = (i + testimonials.length) % testimonials.length;
+          testimonials.forEach((t, idx) =>
+            t.classList.toggle("active", idx === testiIdx),
+          );
+          dots.forEach((d, idx) => {
+            d.classList.toggle("bg-brand-accent", idx === testiIdx);
+            d.classList.toggle("bg-slate-700", idx !== testiIdx);
+          });
+        }
+        goTesti(0);
+        document
+          .getElementById("prevTesti")
+          .addEventListener("click", () => goTesti(testiIdx - 1));
+        document
+          .getElementById("nextTesti")
+          .addEventListener("click", () => goTesti(testiIdx + 1));
+        setInterval(() => goTesti(testiIdx + 1), 7000);
+
+        document
+          .getElementById("contactForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            showToast("PESAN TERKIRIM · TERIMA KASIH");
+            e.target.reset();
+          });
+
+        const canvas = document.getElementById("heroParticles");
+        if (canvas) {
+          const ctx = canvas.getContext("2d");
+          let particles = [];
+          let w = 0,
+            h = 0;
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+          function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            w = rect.width;
+            h = rect.height;
+            canvas.width = Math.floor(w * dpr);
+            canvas.height = Math.floor(h * dpr);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            initParticles();
+          }
+
+          function initParticles() {
+            particles = [];
+            const count = Math.min(50, Math.floor((w * h) / 24000));
+            for (let i = 0; i < count; i++) {
+              particles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.22,
+                vy: (Math.random() - 0.5) * 0.22,
+                r: Math.random() * 1.3 + 0.4,
+              });
+            }
+          }
+
+          function animate() {
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = "rgba(125, 211, 252, 0.55)";
+            for (const p of particles) {
+              p.x += p.vx;
+              p.y += p.vy;
+              if (p.x < 0 || p.x > w) p.vx *= -1;
+              if (p.y < 0 || p.y > h) p.vy *= -1;
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.strokeStyle = "rgba(125, 211, 252, 0.10)";
+            ctx.lineWidth = 1;
+            for (let i = 0; i < particles.length; i++) {
+              for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const d2 = dx * dx + dy * dy;
+                if (d2 < 130 * 130) {
+                  ctx.beginPath();
+                  ctx.moveTo(particles[i].x, particles[i].y);
+                  ctx.lineTo(particles[j].x, particles[j].y);
+                  ctx.stroke();
+                }
+              }
+            }
+            requestAnimationFrame(animate);
+          }
+
+          window.addEventListener("resize", resizeCanvas);
+          resizeCanvas();
+          animate();
+        }
+
+        const HEADER_OFFSET = 80;
+        document.querySelectorAll('a[href^="#"]').forEach((a) => {
+          a.addEventListener("click", (e) => {
+            const id = a.getAttribute("href");
+            if (!id || id.length < 2) return;
+            const target = document.querySelector(id);
+            if (!target) return;
+            e.preventDefault();
+            const y =
+              target.getBoundingClientRect().top +
+              window.scrollY -
+              HEADER_OFFSET;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
